@@ -44,9 +44,46 @@ function list_user()
 	$sql = sprintf("SELECT * FROM users");
 	$stmt = $pdo->query($sql);
 	$nUsers = $stmt->fetchAll(PDO::FETCH_ASSOC);
-	printf("| id | USERNAME | EMAIL | NOTE |\n");
+	//printf("| id | USERNAME | EMAIL | NOTE |\n");
+	$marge_name = 0;
+	$marge_email = 0;
+	$marge_id = 0;
+	$marge_note = 0;
 	foreach ($nUsers as $index => $value)
-		printf("| %d | %s | %s | %d |\n", $nUsers[$index]['id'], $nUsers[$index]['username'], $nUsers[$index]['email'], $nUsers[$index]['note']);
+	{
+		if ($d = strlen($nUsers[$index]['username']))
+			if ($d > $marge_name)
+				$marge_name = $d;
+		if ($d = strlen($nUsers[$index]['email']))
+			if ($d > $marge_email)
+				$marge_email = $d;
+		if ($d = strlen($nUsers[$index]['id']))
+			if ($d > $marge_id)
+				$marge_id = $d;
+		if ($d = strlen($nUsers[$index]['note']))
+			if ($d > $marge_note)
+				$marge_note = $d;
+	}
+	$str_marge_id = "";
+	$str_marge_name = "";
+	$str_marge_email = "";
+	$str_marge_note = "";
+	for ($i = $marge_email; $i != 0; $i--)
+		$str_marge_email .= ' ';
+	for ($i = $marge_name; $i != 0; $i--)
+		$str_marge_name .= ' ';
+	for ($i = $marge_id; $i != 0; $i--)
+		$str_marge_id .= ' ';
+	for ($i = $marge_note; $i != 0; $i--)
+		$str_marge_note .= ' ';
+	foreach ($nUsers as $index => $value)
+	{
+		printf($str_marge_id .= '|' . $nUsers[$index]['id'] . '|');
+		printf($str_marge_name .= '|' . $nUsers[$index]['username'] . '|');
+		printf($str_marge_email .= '|' . $nUsers[$index]['email'] . '|');
+		printf($str_marge_note .= '|' . $nUsers[$index]['note'] . '|');
+		printf("\n");
+	}
 }
 
 function user_average()
