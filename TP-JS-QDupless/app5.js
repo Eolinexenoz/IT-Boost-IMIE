@@ -34,34 +34,10 @@ structure.forEach(function(item)
     a.href = "#";
     a.innerHTML = "delete";
 })
-var sub = document.getElementsByClassName('btn btn-primary btn-sm float-right')
-console.log(li);
-sub[0].addEventListener('click', function(e){
-    console.log(sub[0]);
-    li[0].style.display = "none";
-})
 
-sub[1].addEventListener('click', function(e){
-    console.log(sub[0]);
-    li[1].style.display = "none";
-})
-
-sub[2].addEventListener('click', function(e){
-    console.log(sub[0]);
-    li[2].style.display = "none";
-})
-
-sub[3].addEventListener('click', function(e){
-    console.log(sub[0]);
-    li[3].style.display = "none";
-})
-
-sub[4].addEventListener('click', function(e){
-    console.log(sub[0]);
-    li[4].style.display = "none";
-})
-
-sub[5].addEventListener('click', function(e){
-    console.log(sub[0]);
-    li[5].style.display = "none";
+var sub2 = document.querySelectorAll('li');
+sub2.forEach(function(e){
+    e.addEventListener('click', function(a){
+        e.style.display = "none";
+    })
 })
